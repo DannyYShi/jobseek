@@ -44,7 +44,7 @@ function List(props) {
         <h2>{props.listTitle}</h2>
       </header>
       <div className="list-cards">
-        {list.map((card) => (
+        {cards.map((card) => (
           <Card {...card} />
         ))}
       </div>
