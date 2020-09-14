@@ -4,12 +4,6 @@ import "./List.css";
 import FormDialog from "./FormDialog";
 
 function List(props) {
-  const [cards, setCards] = useState([
-    { position: "Apple", companyName: "Web Developer" },
-  ]);
-
-  function updateList(position, companyName) {}
-
   return (
     <div className="list">
       <header className="list-header">
@@ -24,7 +18,7 @@ function List(props) {
           />
         ))}
       </div>
-      <FormDialog updateList={updateList} />
+      <FormDialog />
     </div>
   );
 }

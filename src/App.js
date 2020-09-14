@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import List from "./components/List";
 import STORE from "./STORE";
@@ -33,11 +33,22 @@ function App() {
       },
     ],
     allCards: {
-      a: { id: "a", position: "First card", companyName: "lorem ipsum" },
-      b: { id: "b", position: "Second card", companyName: "lorem ipsum" },
-      c: { id: "c", position: "Third card", companyName: "lorem ipsum" },
+      a: {
+        id: "a",
+        position: "Full Stack Engineer",
+        companyName: "Apple",
+      },
+      b: { id: "b", position: "Front-end Developer", companyName: "Sonos" },
+      c: {
+        id: "c",
+        position: "Jr. Software Engineer",
+        companyName: "Amazon",
+      },
     },
   };
+
+  const [list, setList] = useState(store);
+
   return (
     <div className="App">
       <main>
@@ -45,7 +56,7 @@ function App() {
           <h1>jobseek</h1>
         </header>
         <div className="App-list">
-          {store.lists.map((list) => (
+          {list.lists.map((list) => (
             <List
               key={list.id}
               listTitle={list.header}

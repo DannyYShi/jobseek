@@ -20,21 +20,23 @@ const useStyles = makeStyles({
 export default function JobCard(props) {
   const classes = useStyles();
 
-  function handleDelete() {}
+  function handleDelete() {
+    console.log();
+  }
 
   return (
     <Card className={classes.root}>
       <CardContent>
-        <Typography gutterBottom variant="h5" component="h2" name="position">
-          {props.position}
+        <Typography gutterBottom variant="h5" component="h2" name="companyName">
+          {props.companyName}
         </Typography>
         <Typography
           variant="body2"
           color="textSecondary"
           component="p"
-          name="companyName"
+          name="position"
         >
-          {props.companyName}
+          {props.position}
         </Typography>
       </CardContent>
 
@@ -43,7 +45,7 @@ export default function JobCard(props) {
           position={props.position}
           companyName={props.companyName}
         />
-        <Button size="small" color="primary">
+        <Button size="small" color="primary" onClick={handleDelete}>
           Delete
         </Button>
       </CardActions>
