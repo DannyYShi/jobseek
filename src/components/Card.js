@@ -10,6 +10,7 @@ import CardDetails from "./CardDetails";
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
+    marginBottom: 10,
   },
   media: {
     height: 140,
@@ -18,6 +19,8 @@ const useStyles = makeStyles({
 
 export default function JobCard(props) {
   const classes = useStyles();
+
+  function handleDelete() {}
 
   return (
     <Card className={classes.root}>
@@ -36,7 +39,10 @@ export default function JobCard(props) {
       </CardContent>
 
       <CardActions style={{ justifyContent: "center" }}>
-        <CardDetails />
+        <CardDetails
+          position={props.position}
+          companyName={props.companyName}
+        />
         <Button size="small" color="primary">
           Delete
         </Button>

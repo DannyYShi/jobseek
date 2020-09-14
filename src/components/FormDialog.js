@@ -5,6 +5,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import STORE from "../STORE";
 import Card from "./Card";
 
 export default function FormDialog(props) {
@@ -17,6 +18,8 @@ export default function FormDialog(props) {
   };
 
   const handleClose = () => {
+    setCompanyName("");
+    setPosition("");
     setOpen(false);
   };
 
@@ -43,7 +46,7 @@ export default function FormDialog(props) {
             id="companyName"
             label="Company"
             type="text"
-            value={companyName}
+            value={props.companyName}
             onChange={(e) => {
               setCompanyName(e.target.value);
             }}
@@ -54,7 +57,7 @@ export default function FormDialog(props) {
             id="position"
             label="Position"
             type="text"
-            value={position}
+            value={props.position}
             onChange={(e) => {
               setPosition(e.target.value);
             }}
@@ -65,10 +68,7 @@ export default function FormDialog(props) {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button
-            onClick={handleSubmit.bind(position, companyName)}
-            color="primary"
-          >
+          <Button onClick={handleSubmit} color="primary">
             Save Job
           </Button>
         </DialogActions>

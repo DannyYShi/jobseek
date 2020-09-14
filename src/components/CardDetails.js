@@ -21,14 +21,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FormDialog() {
+export default function FormDialog(props) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const [companyName, setCompanyName] = useState("");
-  const [position, setPosition] = useState("");
+  const [open, setOpen] = useState(false);
+  const [companyName, setCompanyName] = useState(props.companyName);
+  const [position, setPosition] = useState(props.position);
   const [jobLocation, setJobLocation] = useState("");
   const [jobURL, setJobURL] = useState("");
-  const [appStatus, setAppStatus] = useState("");
   const [jobDescription, setJobDescription] = useState("");
 
   const handleClickOpen = () => {
