@@ -7,10 +7,10 @@ function List(props) {
   return (
     <div className="list">
       <header className="list-header">
-        <h2>{props.listTitle}</h2>
+        <h2>{props.list.title}</h2>
       </header>
       <div className="list-cards">
-        {props.cards.map((card) => (
+        {props.list.cards.map((card) => (
           <Card
             key={card.id}
             position={card.position}
@@ -18,7 +18,7 @@ function List(props) {
           />
         ))}
       </div>
-      <FormDialog />
+      <FormDialog list={props.list} updateList={props.updateList} />
     </div>
   );
 }

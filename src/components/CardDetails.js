@@ -52,8 +52,7 @@ export default function FormDialog(props) {
         <DialogTitle id="form-dialog-title">Job Details</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
+            Use this to keep track of the details of your job application.
           </DialogContentText>
           <TextField
             variant="outlined"

@@ -7,6 +7,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import STORE from "../STORE";
 import Card from "./Card";
+import { List } from "@material-ui/core";
 
 export default function FormDialog(props) {
   const [open, setOpen] = useState(false);
@@ -23,9 +24,11 @@ export default function FormDialog(props) {
     setOpen(false);
   };
 
-  function handleSubmit(e) {
+  function handleSubmit() {
     handleClose();
-    console.log(companyName, position);
+    console.log(props.list);
+    const newCards = [...props.list.cards, { companyName, position }];
+    props.updateList({ ...props.list, cards: newCards });
   }
 
   return (
@@ -42,6 +45,7 @@ export default function FormDialog(props) {
         <DialogContent>
           <TextField
             autoFocus
+            required
             margin="dense"
             id="companyName"
             label="Company"
@@ -53,6 +57,7 @@ export default function FormDialog(props) {
             fullWidth
           />
           <TextField
+            required
             margin="dense"
             id="position"
             label="Position"
