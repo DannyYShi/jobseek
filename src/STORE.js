@@ -7,30 +7,28 @@ export default {
       header: "Wishlist",
       cards: [
         { id: uuidv4(), companyName: "Facebook", position: "Web Developer" },
-        { id: uuidv4(), companyName: "McDonalds", position: "Cashier" },
+        { id: uuidv4(), companyName: "Apple", position: "Genius" },
       ],
     },
     {
       id: "1",
       header: "Applied",
-      cards: [
-        { id: uuidv4(), companyName: "Facebook", position: "Web Developer" },
-      ],
+      cards: [,],
     },
     {
       id: "2",
       header: "Interview",
-      cards: [{ id: uuidv4(), companyName: "Example", position: "Test" }],
+      cards: [],
     },
     {
       id: "3",
       header: "Offer",
-      cards: [{ id: uuidv4(), companyName: "Example", position: "Test" }],
+      cards: [],
     },
     {
       id: "4",
       header: "Rejected",
-      cards: [{ id: uuidv4(), companyName: "Example", position: "Test" }],
+      cards: [],
     },
   ],
   //   allCards: {
