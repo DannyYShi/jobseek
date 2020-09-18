@@ -5,7 +5,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import STORE from "../STORE";
+import { v4 as uuidv4 } from "uuid";
 import Card from "./Card";
 import { List } from "@material-ui/core";
 
@@ -27,8 +27,11 @@ export default function FormDialog(props) {
   function handleSubmit() {
     handleClose();
     console.log(props.list);
-    const newCards = [...props.list.cards, { companyName, position }];
-    props.updateList({ ...props.list, cards: newCards });
+    const newCards = [
+      ...props.list.cards,
+      { id: uuidv4(), companyName, position },
+    ];
+    props.updateList({ ...props.list, cards: newCards }, props.list.id);
   }
 
   return (

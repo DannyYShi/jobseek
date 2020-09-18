@@ -20,8 +20,11 @@ const useStyles = makeStyles({
 export default function JobCard(props) {
   const classes = useStyles();
 
-  function handleDelete() {
-    console.log();
+  function handleDelete(id) {
+    console.log(id);
+    const newList = props.list.cards.filter((card) => card.id !== id);
+    console.log(newList);
+    props.updateList({ ...props.list, cards: newList }, props.list.id);
   }
 
   return (
@@ -45,7 +48,11 @@ export default function JobCard(props) {
           position={props.position}
           companyName={props.companyName}
         />
-        <Button size="small" color="primary" onClick={handleDelete}>
+        <Button
+          size="small"
+          color="primary"
+          onClick={() => handleDelete(props.id)}
+        >
           Delete
         </Button>
       </CardActions>

@@ -19,7 +19,7 @@ function App() {
               list={list}
               updateList={(list, i) => {
                 lists[i] = list;
-                setLists(lists);
+                setLists([...lists]);
               }}
             />
           ))}
