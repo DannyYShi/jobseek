@@ -38,7 +38,19 @@ function App() {
       updateList(newList, destList.id);
     }
     if (destination.droppableId !== source.droppableId) {
-      console.log("im working on it");
+      const sourceList = lists[source.droppableId];
+      const destList = lists[destination.droppableId];
+      const sourceListCards = Array.from(sourceList.cards);
+      const destListCards = Array.from(destList.cards);
+      const draggedCard = sourceListCards[source.index];
+      sourceListCards.splice(source.index, 1);
+      destListCards.splice(destination.index, 0, draggedCard);
+      const newList = { ...destList, cards: destListCards };
+      console.log(newList);
+      console.log(sourceListCards);
+      const updatedSourceList = { ...sourceList, cards: sourceListCards };
+      updateList(newList, destList.id);
+      updateList(updatedSourceList, sourceList.id);
     }
   };
 
