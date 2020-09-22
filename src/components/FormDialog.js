@@ -6,8 +6,6 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { v4 as uuidv4 } from "uuid";
-import Card from "./Card";
-import { List } from "@material-ui/core";
 
 export default function FormDialog(props) {
   const [open, setOpen] = useState(false);

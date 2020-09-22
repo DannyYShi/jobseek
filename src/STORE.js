@@ -13,7 +13,7 @@ export default {
     {
       id: "1",
       header: "Applied",
-      cards: [,],
+      cards: [],
     },
     {
       id: "2",
