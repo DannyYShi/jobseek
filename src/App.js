@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./App.css";
-import List from "./components/List";
+import List from "./components/lists/List";
 import STORE from "./STORE";
+import Header from "./components/header/Header";
 import { DragDropContext } from "react-beautiful-dnd";
 
 function App() {
@@ -57,9 +58,7 @@ function App() {
   return (
     <div className="App">
       <main>
-        <header className="App-header">
-          <h1>jobseek</h1>
-        </header>
+        <Header />
         <DragDropContext onDragEnd={onDragEnd}>
           <div className="App-list">
             {lists.map((list) => (
