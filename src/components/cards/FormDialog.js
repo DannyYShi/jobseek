@@ -5,12 +5,24 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { v4 as uuidv4 } from "uuid";
+import config from "../../config";
 
 export default function FormDialog(props) {
   const [open, setOpen] = useState(false);
   const [companyName, setCompanyName] = useState("");
   const [position, setPosition] = useState("");
+
+  const postData = async (url = config.CARD_ENDPOINT, data = {}) => {
+    console.log(data);
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data),
+    });
+    return response.json();
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -25,11 +37,17 @@ export default function FormDialog(props) {
   function handleSubmit() {
     handleClose();
     console.log(props.list);
-    const newCards = [
-      ...props.list.cards,
-      { id: uuidv4(), companyName, position },
-    ];
-    props.updateList({ ...props.list, cards: newCards }, props.list.id);
+
+    postData(config.CARD_ENDPOINT, {
+      'list_id': props.list.list_id,
+      'company_name': companyName,
+      'position_applied': position,
+    }).then((data) => {
+      console.log(data);
+    });
+    // const newCards = [...props.list.cards, { companyName, position }];
+    props.updateList();
+    //{ ...props.list, cards: newCards }, props.list.id
   }
 
   return (

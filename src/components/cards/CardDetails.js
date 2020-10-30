@@ -17,14 +17,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FormDialog(props) {
+export default function CardDetails(props) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [companyName, setCompanyName] = useState(props.companyName);
   const [position, setPosition] = useState(props.position);
-  const [jobLocation, setJobLocation] = useState("");
-  const [jobURL, setJobURL] = useState("");
-  const [jobDescription, setJobDescription] = useState("");
+  const [jobLocation, setJobLocation] = useState(props.jobLocation);
+  const [jobURL, setJobURL] = useState(props.jobUrl);
+  const [jobDescription, setJobDescription] = useState(props.jobDescription);
 
   const handleClickOpen = () => {
     setOpen(true);

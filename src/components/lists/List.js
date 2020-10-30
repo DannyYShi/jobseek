@@ -8,9 +8,9 @@ function List(props) {
   return (
     <div className="list">
       <header className="list-header">
-        <h2>{props.list.header}</h2>
+        <h2>{props.list.list_name}</h2>
       </header>
-      <Droppable droppableId={props.id}>
+      <Droppable droppableId={props.id.toString()}>
         {(provided) => (
           <div
             className="list-cards"
@@ -19,11 +19,14 @@ function List(props) {
           >
             {props.list.cards.map((card, index) => (
               <Card
-                key={card.id}
-                id={card.id}
+                key={card.card_id}
+                id={card.card_id}
                 index={index}
-                position={card.position}
-                companyName={card.companyName}
+                position={card.position_applied}
+                companyName={card.company_name}
+                jobLocation={card.job_location}
+                jobUrl={card.job_url}
+                jobDescription={card.job_description}
                 list={props.list}
                 updateList={props.updateList}
               />

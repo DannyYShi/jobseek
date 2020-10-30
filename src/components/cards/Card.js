@@ -1,4 +1,5 @@
 import React from "react";
+import config from '../../config'
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -20,15 +21,33 @@ const useStyles = makeStyles({
 export default function JobCard(props) {
   const classes = useStyles();
 
+  const deleteData = async (url = config.CARD_ENDPOINT, data = {}) => {
+    console.log(data);
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(data),
+    });
+
+  };
+
   function handleDelete(id) {
     console.log(id);
-    const newList = props.list.cards.filter((card) => card.id !== id);
+    deleteData(config.CARD_ENDPOINT + parseInt(id), {
+      'card_id': parseInt(id),
+    })
+    const newList = props.list.cards.filter((card) => card.card_id !== parseInt(id));
     console.log(newList);
-    props.updateList({ ...props.list, cards: newList }, props.list.id);
+    props.updateList();
+    //{ ...props.list, cards: newList }, props.list.id
+
   }
 
   return (
-    <Draggable draggableId={props.id} index={props.index}>
+    <Draggable draggableId={props.id.toString()} index={props.index}>
       {(provided) => (
         <div
           ref={provided.innerRef}
@@ -59,11 +78,14 @@ export default function JobCard(props) {
               <CardDetails
                 position={props.position}
                 companyName={props.companyName}
+                jobLocation={props.jobLocation}
+                jobUrl={props.jobUrl}
+                jobDescription={props.jobDescription}
               />
               <Button
                 size="small"
                 color="primary"
-                onClick={() => handleDelete(props.id)}
+                onClick={() => handleDelete(props.id.toString())}
               >
                 Delete
               </Button>

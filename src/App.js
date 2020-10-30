@@ -1,16 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
+import config from "./config";
 import List from "./components/lists/List";
-import STORE from "./STORE";
+//import STORE from "./STORE";
 import Header from "./components/header/Header";
 import { DragDropContext } from "react-beautiful-dnd";
 
 function App() {
-  const [lists, setLists] = useState(STORE.lists);
+  const [lists, setLists] = useState([]);
 
-  const updateList = (list, i) => {
-    lists[i] = list;
-    setLists([...lists]);
+  const updateList = () => {
+    // lists[i] = list;
+    // setLists([...lists]);
+    console.log('I was called!');
+    loadData();
+  };
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const loadData = async () => {
+    const cardResponse = await fetch(config.CARD_ENDPOINT);
+    const listResponse = await fetch(config.LIST_ENDPOINT);
+    const cardData = await cardResponse.json();
+    const listData = await listResponse.json();
+    console.log(listData);
+    console.log(cardData);
+
+    setLists(listData);
   };
 
   const onDragEnd = (result) => {
@@ -63,13 +81,10 @@ function App() {
           <div className="App-list">
             {lists.map((list) => (
               <List
-                key={list.id}
-                id={list.id}
+                key={list.list_id}
+                id={list.list_id}
                 list={list}
-                updateList={(list, i) => {
-                  lists[i] = list;
-                  setLists([...lists]);
-                }}
+                updateList={updateList}
               />
             ))}
           </div>
