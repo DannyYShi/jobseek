@@ -44,9 +44,10 @@ export default function FormDialog(props) {
       'position_applied': position,
     }).then((data) => {
       console.log(data);
+      props.updateList();
     });
     // const newCards = [...props.list.cards, { companyName, position }];
-    props.updateList();
+
     //{ ...props.list, cards: newCards }, props.list.id
   }
 

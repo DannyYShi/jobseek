@@ -31,7 +31,7 @@ export default function JobCard(props) {
       },
       body: JSON.stringify(data),
     });
-
+    props.updateList();
   };
 
   function handleDelete(id) {
@@ -39,11 +39,6 @@ export default function JobCard(props) {
     deleteData(config.CARD_ENDPOINT + parseInt(id), {
       'card_id': parseInt(id),
     })
-    const newList = props.list.cards.filter((card) => card.card_id !== parseInt(id));
-    console.log(newList);
-    props.updateList();
-    //{ ...props.list, cards: newList }, props.list.id
-
   }
 
   return (
