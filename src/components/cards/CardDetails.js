@@ -125,26 +125,3 @@ export default function CardDetails(props) {
     </div>
   );
 }
-
-/*<FormControl>
-<InputLabel id="demo-simple-select-label">Status</InputLabel>
-<Select
-  labelId="demo-simple-select-label"
-  id="demo-simple-select"
-  value={appStatus}
-  onChange={handleChange}
-  variant="outlined"
-  fullWidth
->
-<MenuItem value=''>
-  <em>None</em>
-</MenuItem>
-<MenuItem value='Wishlist'>Wishlist</MenuItem>
-<MenuItem value='Applied'>Applied</MenuItem>
-<MenuItem value='Interview'>Interview</MenuItem>
-<MenuItem value='Offered'>Offered</MenuItem>
-<MenuItem value='Rejected'>Rejected</MenuItem>
-</Select>
-</FormControl>
-<br/>
-*/

@@ -1,10 +1,14 @@
 import React from "react";
 import Card from "../cards/Card";
 import "./List.css";
-import FormDialog from "../cards/FormDialog";
+//import FormDialog from "../cards/FormDialog";
+import AddJobModal from '../../AddJobModal'
+import useModal from '../../useModal'
 import { Droppable } from "react-beautiful-dnd";
 
 function List(props) {
+  const { isShowing, toggle } = useModal();
+
   return (
     <div className="list">
       <header className="list-header">
@@ -35,7 +39,13 @@ function List(props) {
           </div>
         )}
       </Droppable>
-      <FormDialog list={props.list} updateList={props.updateList} />
+      <button className="button-default" onClick={toggle}>ADD NEW CARD</button>
+      <AddJobModal
+        list={props.list}
+        updateList={props.updateList}
+        isShowing={isShowing}
+        hide={toggle}
+      />
     </div>
   );
 }

@@ -1,25 +1,14 @@
 import React from "react";
 import config from '../../config'
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import CardDetails from "./CardDetails";
 import { Draggable } from "react-beautiful-dnd";
+import useModal from '../../useModal'
+import DetailsModal from '../../DetailsModal'
+import './Card.css'
 
-const useStyles = makeStyles({
-  root: {
-    marginBottom: 10,
-  },
-  media: {
-    height: 140,
-  },
-});
 
 export default function JobCard(props) {
-  const classes = useStyles();
+
+  const { isShowing, toggle } = useModal();
 
   const deleteData = async (url = config.CARD_ENDPOINT, data = {}) => {
     console.log(data);
@@ -47,45 +36,25 @@ export default function JobCard(props) {
         <div
           ref={provided.innerRef}
           {...provided.dragHandleProps}
-          {...provided.draggableProps}
-        >
-          <Card className={classes.root}>
-            <CardContent>
-              <Typography
-                gutterBottom
-                variant="h5"
-                component="h2"
-                name="companyName"
-              >
-                {props.companyName}
-              </Typography>
-              <Typography
-                variant="body2"
-                color="textSecondary"
-                component="p"
-                name="position"
-              >
-                {props.position}
-              </Typography>
-            </CardContent>
+          {...provided.draggableProps}>
 
-            <CardActions style={{ justifyContent: "center" }}>
-              <CardDetails
-                position={props.position}
-                companyName={props.companyName}
-                jobLocation={props.jobLocation}
-                jobUrl={props.jobUrl}
-                jobDescription={props.jobDescription}
-              />
-              <Button
-                size="small"
-                color="primary"
-                onClick={() => handleDelete(props.id.toString())}
-              >
-                Delete
-              </Button>
-            </CardActions>
-          </Card>
+          <div className='job-app'>
+            <h2>{props.companyName}</h2>
+            <p>{props.position}</p>
+            <button className="button-default" onClick={toggle}>Edit</button>
+            <DetailsModal
+              isShowing={isShowing}
+              hide={toggle}
+              id={props.id}
+              company_name={props.companyName}
+              job_position={props.position}
+              job_location={props.jobLocation}
+              job_url={props.jobUrl}
+              job_description={props.jobDescription}
+              updateList={props.updateList}
+            />
+            <button onClick={() => handleDelete(props.id.toString())}>Delete</button>
+          </div>
         </div>
       )}
     </Draggable>

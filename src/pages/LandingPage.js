@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./LandingPage.css";
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
 
 export default function LandingPage() {
   return (
@@ -12,9 +12,9 @@ export default function LandingPage() {
         new job. To infinity, and beyond!
       </p>
       <Link className="enter-btn" to="/app">
-        <Button variant="contained" size="large">
+        <button variant="contained" size="large">
           ENTER HERE
-        </Button>
+        </button>
       </Link>
     </div>
   );

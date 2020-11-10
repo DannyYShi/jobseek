@@ -9,9 +9,10 @@ import { DragDropContext } from "react-beautiful-dnd";
 function App() {
   const [lists, setLists] = useState([]);
 
-  const updateList = (list, i) => {
-    lists[i] = list
+  const updateList = (newList, i) => {
+    lists[i] = newList
     setLists([...lists])
+
     loadData();
   };
 
@@ -70,9 +71,6 @@ function App() {
       const destListCards = Array.from(destList.cards);
       const draggedCard = sourceListCards[source.index];
       console.log(draggedCard)
-      updateCardLocation(config.CARD_ENDPOINT + parseInt(draggedCard.card_id), {
-        'list_id': parseInt(destListId),
-      })
       // sourceListCards.splice(source.index, 1);
       // destListCards.splice(destination.index, 0, draggedCard);
       // const newList = { ...destList, cards: destListCards };
@@ -81,6 +79,10 @@ function App() {
       // console.log(updatedSourceList)
       // updateList(newList, destListId);
       // updateList(updatedSourceList, sourceListId)
+      updateCardLocation(config.CARD_ENDPOINT + parseInt(draggedCard.card_id), {
+        'list_id': parseInt(destListId),
+      })
+
     }
   };
 
