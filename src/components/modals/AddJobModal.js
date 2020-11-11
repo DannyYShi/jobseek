@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import Modal from './Modal'
-import config from './config'
+import config from '../../app/config'
 
 const AddJobModal = ({ isShowing, hide, list, updateList }) => {
     const [companyName, setCompanyName] = useState("");

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import config from "./config";
-import List from "./components/lists/List";
-//import STORE from "./STORE";
-import Header from "./components/header/Header";
+import List from "../components/lists/List";
+import Header from "../components/header/Header";
 import { DragDropContext } from "react-beautiful-dnd";
 
 function App() {

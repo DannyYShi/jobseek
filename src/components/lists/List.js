@@ -2,8 +2,8 @@ import React from "react";
 import Card from "../cards/Card";
 import "./List.css";
 //import FormDialog from "../cards/FormDialog";
-import AddJobModal from '../../AddJobModal'
-import useModal from '../../useModal'
+import AddJobModal from '../modals/AddJobModal'
+import useModal from '../modals/useModal'
 import { Droppable } from "react-beautiful-dnd";
 
 function List(props) {

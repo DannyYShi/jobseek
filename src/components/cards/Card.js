@@ -1,8 +1,8 @@
 import React from "react";
-import config from '../../config'
+import config from '../../app/config'
 import { Draggable } from "react-beautiful-dnd";
-import useModal from '../../useModal'
-import DetailsModal from '../../DetailsModal'
+import useModal from '../modals/useModal'
+import DetailsModal from '../modals/DetailsModal'
 import './Card.css'
 
 

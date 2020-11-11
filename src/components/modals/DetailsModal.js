@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './DetailsModal.css';
 import Modal from './Modal';
-import config from './config'
+import config from '../../app/config'
 
 const DetailsModal = ({ isShowing, hide, company_name, job_position, job_location, job_url, job_description, id, updateList }) => {
     const [companyName, setCompanyName] = useState(company_name);
