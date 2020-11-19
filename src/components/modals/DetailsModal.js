@@ -40,6 +40,7 @@ const DetailsModal = ({ isShowing, hide, company_name, job_position, job_locatio
                 <form className='card-details-form' onSubmit={handleSubmit}>
                     <label>Company name:
                         <input
+                            required
                             type='text'
                             value={companyName}
                             onChange={(e) => {
@@ -50,6 +51,7 @@ const DetailsModal = ({ isShowing, hide, company_name, job_position, job_locatio
                     <label>
                         Job position:
                          <input
+                            required
                             type='text'
                             value={position}
                             onChange={(e) => {

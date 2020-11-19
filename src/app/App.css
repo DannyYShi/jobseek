@@ -9,7 +9,7 @@
 
 .App-list {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
 }
 
 .App-logo {
@@ -17,9 +17,10 @@
   pointer-events: none;
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (min-width: 960px) {
   .App-list {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
   }
 }

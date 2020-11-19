@@ -8,7 +8,6 @@ import { Droppable } from "react-beautiful-dnd";
 
 function List(props) {
   const { isShowing, toggle } = useModal();
-
   return (
     <div className="list">
       <header className="list-header">

@@ -1,7 +1,7 @@
 import { Route, Switch } from "react-router-dom";
 import React from "react";
 import LandingPage from "./pages/LandingPage";
-import App from "./App";
+import App from "./app/App";
 
 export default function Routes() {
   return (

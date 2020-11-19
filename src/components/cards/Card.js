@@ -11,7 +11,6 @@ export default function JobCard(props) {
   const { isShowing, toggle } = useModal();
 
   const deleteData = async (url = config.CARD_ENDPOINT, data = {}) => {
-    console.log(data);
     const response = await fetch(url, {
       method: "DELETE",
       headers: {
@@ -24,7 +23,6 @@ export default function JobCard(props) {
   };
 
   function handleDelete(id) {
-    console.log(id);
     deleteData(config.CARD_ENDPOINT + parseInt(id), {
       'card_id': parseInt(id),
     })

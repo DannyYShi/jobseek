@@ -8,7 +8,6 @@ const AddJobModal = ({ isShowing, hide, list, updateList }) => {
     const [position, setPosition] = useState("");
 
     const postData = async (url = config.CARD_ENDPOINT, data = {}) => {
-        console.log(data);
         const response = await fetch(url, {
             method: "POST",
             headers: {
@@ -25,7 +24,6 @@ const AddJobModal = ({ isShowing, hide, list, updateList }) => {
             'company_name': companyName,
             'position_applied': position,
         }).then((data) => {
-            console.log(data);
             updateList();
         });
     }
@@ -37,6 +35,7 @@ const AddJobModal = ({ isShowing, hide, list, updateList }) => {
                 <form onSubmit={handleSubmit}>
                     <label>Company name:
                         <input
+                            required
                             value={companyName}
                             onChange={(e) => {
                                 setCompanyName(e.target.value);
@@ -46,6 +45,7 @@ const AddJobModal = ({ isShowing, hide, list, updateList }) => {
                     <label>
                         Job position:
                          <input
+                            required
                             value={position}
                             onChange={(e) => {
                                 setPosition(e.target.value);
