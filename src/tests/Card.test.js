@@ -5,7 +5,7 @@ import { Droppable, DragDropContext } from "react-beautiful-dnd";
 
 
 
-it.skip('renders without crashing', () => {
+it('renders without crashing', () => {
 
     const div = document.createElement('div');
     const list = {
@@ -31,18 +31,25 @@ it.skip('renders without crashing', () => {
     ReactDOM.render(
         <DragDropContext>
             <Droppable droppableId={droppableId}>
-                <div>
-                    <Card
-                        id={card.card_id}
-                        index={index}
-                        position={card.position_applied}
-                        companyName={card.company_name}
-                        jobLocation={card.job_location}
-                        jobUrl={card.job_url}
-                        jobDescription={card.job_description}
-                        list={list}
-                        updateList={updateList} />
-                </div>
+                {(provided) => (
+                    <div
+                        className="list-cards"
+                        ref={provided.innerRef}
+                        {...provided.droppableProps}
+                    >
+                        <Card
+                            id={card.card_id}
+                            index={index}
+                            position={card.position_applied}
+                            companyName={card.company_name}
+                            jobLocation={card.job_location}
+                            jobUrl={card.job_url}
+                            jobDescription={card.job_description}
+                            list={list}
+                            updateList={updateList} />
+                        {provided.placeholder}
+                    </div>
+                )}
             </Droppable>
         </DragDropContext>, div);
     ReactDOM.unmountComponentAtNode(div);
