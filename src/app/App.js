@@ -34,7 +34,7 @@ function App() {
     });
   }
 
-  const onDragEnd = (result) => {
+  const onDragEnd = async (result) => {
     const { destination, source } = result;
 
     console.log(destination, source)
@@ -48,27 +48,29 @@ function App() {
       return;
     } else if (destination.droppableId === source.droppableId) {
 
-      const list = { ...lists[source.droppableId - 1] };
+      const list = { ...lists[+source.droppableId - 1] };
       const card = list.cards[source.index];
-      list.cards.splice(destination.index, 0, card)
-      list.cards.splice(source.index, 1)
-      console.log(list)
+      list.cards.splice(source.index, 1);
+      list.cards.splice(destination.index, 0, card);
       updateList(list, list.id);
     }
     if (destination.droppableId !== source.droppableId) {
-      // const sourceList = { ...lists[source.droppableId] };
-      // const destList = { ...lists[destination.droppableId] };
+      const listCopy = lists.slice();
+      const sourceList = { ...lists[+source.droppableId - 1] };
+      const destList = { ...lists[+destination.droppableId - 1] };
+      listCopy[+source.droppableId - 1] = sourceList;
+      listCopy[+destination.droppableId - 1] = destList;
 
-      // const card = sourceList.cards[source.index];
-      // // Put card into destination list
-      // destList.cards.splice(destination.index, 0, card)
-      // // Remove  card from  source list
-      // sourceList.cards.splice(source.index, 1)
-      // const newList = { ...destList, cards: newCardsList };
-      // updateList(newList, destList.id);
-      // updateCardLocation(config.CARD_ENDPOINT + +draggedCard.card_id, {
-      //   'list_id': destListId,
-      // })
+      const card = sourceList.cards[source.index];
+      // Put card into destination list
+      destList.cards.splice(destination.index, 0, card);
+      // Remove  card from  source list
+      sourceList.cards.splice(source.index, 1);
+      setLists(listCopy)
+
+      await updateCardLocation(config.CARD_ENDPOINT + +card.card_id, {
+        'list_id': +destList.droppableId,
+      })
 
     }
   };
