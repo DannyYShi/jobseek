@@ -12,7 +12,7 @@ const DetailsModal = ({ isShowing, hide, company_name, job_position, job_locatio
     const [jobDescription, setJobDescription] = useState(job_description);
 
     const updateCardInfo = async (url = config.CARD_ENDPOINT, data = {}) => {
-        const response = await fetch(url, {
+        await fetch(url, {
             method: "PATCH",
             headers: {
                 'Content-Type': 'application/json'

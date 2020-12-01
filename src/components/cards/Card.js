@@ -11,7 +11,7 @@ export default function JobCard(props) {
   const { isShowing, toggle } = useModal();
 
   const deleteData = async (url = config.CARD_ENDPOINT, data = {}) => {
-    const response = await fetch(url, {
+    await fetch(url, {
       method: "DELETE",
       headers: {
         'Content-Type': 'application/json',
