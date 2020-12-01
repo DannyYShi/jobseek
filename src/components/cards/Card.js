@@ -11,7 +11,7 @@ export default function JobCard(props) {
   const { isShowing, toggle } = useModal();
 
   const deleteData = async (url = config.CARD_ENDPOINT, data = {}) => {
-    const response = await fetch(url, {
+    await fetch(url, {
       method: "DELETE",
       headers: {
         'Content-Type': 'application/json',
@@ -19,13 +19,16 @@ export default function JobCard(props) {
       },
       body: JSON.stringify(data),
     });
-    props.updateList();
   };
 
-  function handleDelete(id) {
-    deleteData(config.CARD_ENDPOINT + parseInt(id), {
-      'card_id': parseInt(id),
+  async function handleDelete(id) {
+    await deleteData(config.CARD_ENDPOINT + id, {
+      'card_id': id,
     })
+    const listCopy = { ...props.list }
+    const indexToDelete = listCopy.cards.findIndex((card) => card.card_id === id)
+    listCopy.cards.splice(indexToDelete, 1)
+    props.updateList(listCopy, listCopy.list_id - 1)
   }
 
   return (
@@ -50,8 +53,9 @@ export default function JobCard(props) {
               job_url={props.jobUrl}
               job_description={props.jobDescription}
               updateList={props.updateList}
+              list={props.list}
             />
-            <button onClick={() => handleDelete(props.id.toString())}>Delete</button>
+            <button onClick={() => handleDelete(props.id)}>Delete</button>
           </div>
         </div>
       )}

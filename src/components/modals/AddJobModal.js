@@ -11,21 +11,25 @@ const AddJobModal = ({ isShowing, hide, list, updateList }) => {
         const response = await fetch(url, {
             method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             },
             body: JSON.stringify(data),
         });
-        return response.json();
+        return response.json()
     };
 
-    function handleSubmit() {
-        postData(config.CARD_ENDPOINT, {
+    async function handleSubmit(e) {
+        e.preventDefault();
+        const card = await postData(config.CARD_ENDPOINT, {
             'list_id': list.list_id,
             'company_name': companyName,
             'position_applied': position,
-        }).then((data) => {
-            updateList();
-        });
+        })
+        const listCopy = { ...list }
+        listCopy.cards.push(card)
+        updateList(listCopy, list.list_id - 1);
+        hide()
     }
 
     return isShowing ? ReactDOM.createPortal(

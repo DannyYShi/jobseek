@@ -9,10 +9,9 @@ function App() {
   const [lists, setLists] = useState([]);
 
   const updateList = (newList, i) => {
-    lists[i] = newList
-    setLists([...lists])
-
-    loadData();
+    const copyList = lists.slice()
+    copyList[i] = newList;
+    setLists(copyList);
   };
 
   useEffect(() => {
@@ -26,61 +25,50 @@ function App() {
   };
 
   const updateCardLocation = async (url = config.CARD_ENDPOINT, data = {}) => {
-    const response = await fetch(url, {
+    await fetch(url, {
       method: "PATCH",
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(data),
     });
-    updateList()
   }
 
   const onDragEnd = (result) => {
     const { destination, source } = result;
 
+    console.log(destination, source)
+
     if (!destination) {
       return;
-    }
-
-    if (
+    } else if (
       destination.droppableId === source.droppableId &&
       destination.index === source.index
     ) {
       return;
-    }
-    if (destination.droppableId === source.droppableId) {
-      const sourceList = lists[source.droppableId];
-      const destList = lists[destination.droppableId];
+    } else if (destination.droppableId === source.droppableId) {
 
-      const newCardsList = Array.from(sourceList.cards);
-      const draggedCard = newCardsList[source.index];
-      newCardsList.splice(source.index, 1);
-      newCardsList.splice(destination.index, 0, draggedCard);
-      const newList = { ...destList, cards: newCardsList };
-      console.log(newList);
-      updateList(newList, destList.id);
+      const list = { ...lists[source.droppableId - 1] };
+      const card = list.cards[source.index];
+      list.cards.splice(destination.index, 0, card)
+      list.cards.splice(source.index, 1)
+      console.log(list)
+      updateList(list, list.id);
     }
     if (destination.droppableId !== source.droppableId) {
-      const sourceList = lists[source.droppableId - 1];
-      const destList = lists[destination.droppableId - 1];
-      const sourceListId = lists[source.droppableId - 1].list_id;
-      const destListId = lists[destination.droppableId - 1].list_id;
-      const sourceListCards = Array.from(sourceList.cards);
-      const destListCards = Array.from(destList.cards);
-      const draggedCard = sourceListCards[source.index];
-      console.log(draggedCard)
-      // sourceListCards.splice(source.index, 1);
-      // destListCards.splice(destination.index, 0, draggedCard);
-      // const newList = { ...destList, cards: destListCards };
-      // console.log(newList);
-      // const updatedSourceList = { ...sourceList, cards: sourceListCards };
-      // console.log(updatedSourceList)
-      // updateList(newList, destListId);
-      // updateList(updatedSourceList, sourceListId)
-      updateCardLocation(config.CARD_ENDPOINT + parseInt(draggedCard.card_id), {
-        'list_id': parseInt(destListId),
-      })
+      // const sourceList = { ...lists[source.droppableId] };
+      // const destList = { ...lists[destination.droppableId] };
+
+      // const card = sourceList.cards[source.index];
+      // // Put card into destination list
+      // destList.cards.splice(destination.index, 0, card)
+      // // Remove  card from  source list
+      // sourceList.cards.splice(source.index, 1)
+      // const newList = { ...destList, cards: newCardsList };
+      // updateList(newList, destList.id);
+      // updateCardLocation(config.CARD_ENDPOINT + +draggedCard.card_id, {
+      //   'list_id': destListId,
+      // })
 
     }
   };
