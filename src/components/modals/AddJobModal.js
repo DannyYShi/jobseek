@@ -29,8 +29,11 @@ const AddJobModal = ({ isShowing, hide, list, updateList }) => {
         const listCopy = { ...list }
         listCopy.cards.push(card)
         updateList(listCopy, list.list_id - 1);
-        hide()
+        setCompanyName('');
+        setPosition('');
+        hide();
     }
+
 
     return isShowing ? ReactDOM.createPortal(
         <>
