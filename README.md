@@ -6,7 +6,7 @@ Jobseek is a fully functioning web app. Jobseek allows you to keep track of diff
 
 ## Screenshot
 
-![app-gif](/pictures/Jobseek.gif)
+![app-gif](/pictures/jobseek_demo.gif)
 
 ## Tech Used:
 HTML5, CSS3, JavaScript, JSX, React.js, React Hooks, Vercel, react-beautiful-dnd
