@@ -7,7 +7,7 @@ export default function Header() {
     <div>
       <nav className="navbar">
         <Link className="navbar-logo" to="/">
-          jobseek
+          Jobseek
         </Link>
       </nav>
     </div>

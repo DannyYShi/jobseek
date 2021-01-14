@@ -42,7 +42,7 @@ export default function JobCard(props) {
           <div className='job-app'>
             <h2>{props.companyName}</h2>
             <p>{props.position}</p>
-            <button className="button-default" onClick={toggle}>Edit</button>
+            <button className="button-edit" onClick={toggle}>Edit</button>
             <DetailsModal
               isShowing={isShowing}
               hide={toggle}
@@ -55,7 +55,7 @@ export default function JobCard(props) {
               updateList={props.updateList}
               list={props.list}
             />
-            <button onClick={() => handleDelete(props.id)}>Delete</button>
+            <button className='button-delete' onClick={() => handleDelete(props.id)}>Delete</button>
           </div>
         </div>
       )}

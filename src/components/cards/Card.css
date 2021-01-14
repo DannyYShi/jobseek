@@ -7,4 +7,23 @@
   margin-bottom: 10px;
 }
 
+.button-edit {
+  background: #247BA0;
+  color: #fff;
+  font-size: .9rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 3px;
+  padding: .3rem 1rem;
+  margin-left: .5rem;
+}
 
+.button-delete {
+  color:black;
+  font-size: .9rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 3px;
+  padding: .3rem 1rem;
+  margin-left: .5rem;
+}
